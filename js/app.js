@@ -142,3 +142,48 @@ function dubaiRender() {
   dubaiparEl.appendChild(dubLiEl);
 }
 dubaiRender();
+
+//Paris Store
+var paris = {
+  minCustHours: 20,
+  maxCustHours: 38,
+  avgCookies: 2.3,
+  storeCookiePerHour: [],
+  randomNumberCustomerHour: function () {
+    return (Math.floor(Math.random() * (this.maxCustHours - this.minCustHours + 1)) + this.minCustHours);//returns a random number between 23 and 65
+  },
+  cookiePerHour: function () {
+    for (var i = 0; i < storeHours.length; i++) {
+      this.storeCookiePerHour.push(Math.round(this.randomNumberCustomerHour() * this.avgCookies));
+    }
+  },
+  cookieSum: function () {
+    var arraySum = 0;
+    for (var i = 0; i < storeHours.length; i++) {
+      arraySum = arraySum + this.storeCookiePerHour[i];
+    }
+    return arraySum;
+  }
+
+};
+console.log(paris);
+paris.cookiePerHour();
+
+function parisRender() {
+  var parSum = paris.cookieSum();
+
+  var parisparEl = document.getElementById('Paris Store');
+  for (var i = 0; i < storeHours.length; i++) {
+    // create element
+    var parliEl = document.createElement('li');
+    // Give it content
+    parliEl.textContent = `${storeHours[i]} ${paris.storeCookiePerHour[i]} cookies`;
+    // append the child to the parent
+    parisparEl.appendChild(parliEl);
+  }
+  var parLiEl = document.createElement('li');
+  parLiEl.textContent = `Total: ${parSum} cookies`;
+  parisparEl.appendChild(parLiEl);
+}
+parisRender();
+
