@@ -1,5 +1,4 @@
 'use strict';
-console.log('im alive');
 //Problem Domain:
 // -Need to calculate the number of cookies each location must make eery day to manage its supplies inventory and baking schedule.
 // -Number of cookies made depends on hours of operations which is 6-8 for all locations, plust a few factors unique to each location such as:
@@ -10,7 +9,9 @@ console.log('im alive');
 // -User needs to be able to easily modify the input numbers for each location based on day of the week, special events, and other factors. 
 // -User would like to see nice formatting for the numbers
 
-var storeHours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm',];
+var storeHours = ['6am:','7am:','8am:','9am:','10am:','11am:','12pm:','1pm:','2pm:','3pm:','4pm:','5pm:','6pm:','7pm:'];
+
+// Seattle Store
 var seattle = {
   minCustHours: 23,
   maxCustHours: 65,
@@ -21,7 +22,7 @@ var seattle = {
   },
   cookiePerHour: function(){
     for(var i = 0; i < storeHours.length; i++){
-      this.storeCookiePerHour.push(this.randomNumberCustomerHour() * this.avgCookies);
+      this.storeCookiePerHour.push(Math.round(this.randomNumberCustomerHour() * this.avgCookies));
     }
   },
   cookieSum: function(){
@@ -35,10 +36,21 @@ var seattle = {
 };
 console.log(seattle);
 seattle.cookiePerHour();
-seattle.cookieSum();
+var seaSum = seattle.cookieSum();
+
+var pEl = document.getElementById('Seattle Store');
+for(var i = 0; i < storeHours.length; i++){
+  // create element
+  var liEl = document.createElement('li');
+  // Give it content
+  liEl.textContent = `${storeHours[i]} ${seattle.storeCookiePerHour[i]} cookies`;
+  // append the child to the parent
+  pEl.appendChild(liEl);
+}
+var seaLiEl = document.createElement('li');
+seaLiEl.textContent = `Total: ${seaSum} cookies`;
+pEl.appendChild(seaLiEl);
 
 
-
-//TODO: Use template literals to display Seattle store's hours and cookies per hour on sales.html
 
 
