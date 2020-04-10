@@ -98,3 +98,47 @@ function tokyoRender() {
   tokyparEl.appendChild(tokLiEl);
 }
 tokyoRender();
+
+//Dubai Store
+var dubai = {
+  minCustHours: 11,
+  maxCustHours: 38,
+  avgCookies: 3.7,
+  storeCookiePerHour: [],
+  randomNumberCustomerHour: function () {
+    return (Math.floor(Math.random() * (this.maxCustHours - this.minCustHours + 1)) + this.minCustHours);//returns a random number between 23 and 65
+  },
+  cookiePerHour: function () {
+    for (var i = 0; i < storeHours.length; i++) {
+      this.storeCookiePerHour.push(Math.round(this.randomNumberCustomerHour() * this.avgCookies));
+    }
+  },
+  cookieSum: function () {
+    var arraySum = 0;
+    for (var i = 0; i < storeHours.length; i++) {
+      arraySum = arraySum + this.storeCookiePerHour[i];
+    }
+    return arraySum;
+  }
+
+};
+console.log(dubai);
+dubai.cookiePerHour();
+
+function dubaiRender() {
+  var dubSum = dubai.cookieSum();
+
+  var dubaiparEl = document.getElementById('Dubai Store');
+  for (var i = 0; i < storeHours.length; i++) {
+    // create element
+    var dubliEl = document.createElement('li');
+    // Give it content
+    dubliEl.textContent = `${storeHours[i]} ${dubai.storeCookiePerHour[i]} cookies`;
+    // append the child to the parent
+    dubaiparEl.appendChild(dubliEl);
+  }
+  var dubLiEl = document.createElement('li');
+  dubLiEl.textContent = `Total: ${dubSum} cookies`;
+  dubaiparEl.appendChild(dubLiEl);
+}
+dubaiRender();
