@@ -187,3 +187,48 @@ function parisRender() {
 }
 parisRender();
 
+
+//Lima Store
+var lima = {
+  minCustHours: 2,
+  maxCustHours: 16,
+  avgCookies: 4.6,
+  storeCookiePerHour: [],
+  randomNumberCustomerHour: function () {
+    return (Math.floor(Math.random() * (this.maxCustHours - this.minCustHours + 1)) + this.minCustHours);//returns a random number between 23 and 65
+  },
+  cookiePerHour: function () {
+    for (var i = 0; i < storeHours.length; i++) {
+      this.storeCookiePerHour.push(Math.round(this.randomNumberCustomerHour() * this.avgCookies));
+    }
+  },
+  cookieSum: function () {
+    var arraySum = 0;
+    for (var i = 0; i < storeHours.length; i++) {
+      arraySum = arraySum + this.storeCookiePerHour[i];
+    }
+    return arraySum;
+  }
+
+};
+console.log(lima);
+lima.cookiePerHour();
+
+function limaRender() {
+  var limSum = lima.cookieSum();
+
+  var limaparEl = document.getElementById('Lima Store');
+  for (var i = 0; i < storeHours.length; i++) {
+    // create element
+    var limliEl = document.createElement('li');
+    // Give it content
+    limliEl.textContent = `${storeHours[i]} ${lima.storeCookiePerHour[i]} cookies`;
+    // append the child to the parent
+    limaparEl.appendChild(limliEl);
+  }
+  var limLiEl = document.createElement('li');
+  limLiEl.textContent = `Total: ${limSum} cookies`;
+  limaparEl.appendChild(limLiEl);
+}
+limaRender();
+
