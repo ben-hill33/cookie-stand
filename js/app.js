@@ -9,6 +9,26 @@
 // -User needs to be able to easily modify the input numbers for each location based on day of the week, special events, and other factors. 
 // -User would like to see nice formatting for the numbers
 
+var newStoreArr = [];
+
+function StoreList(minCustHours, maxCustHours, avgCookies, storeCookiePerHour, randomNumberCustomerHour, cookiePerHour, cookieSum){
+  this.minCustHours = minCustHours;
+  this.maxCustHours = maxCustHours;
+  this.avgCookies = avgCookies;
+  this.storeCookiePerHour = storeCookiePerHour;
+  this.randomNumberCustomerHour = randomNumberCustomerHour;
+  this.cookiePerHour = cookiePerHour;
+  this.cookieSum = cookieSum;
+
+  newStoreArr.push(this);
+}
+
+new StoreList(23, 65, 6.3);
+new StoreList(3, 24, 1.2);
+new StoreList(11, 38, 3.7);
+new StoreList(20, 38, 2.3);
+new StoreList(2, 16, 4.6);
+
 var storeHours = ['6am:', '7am:', '8am:', '9am:', '10am:', '11am:', '12pm:', '1pm:', '2pm:', '3pm:', '4pm:', '5pm:', '6pm:', '7pm:'];
 
 // Seattle Store
