@@ -41,18 +41,25 @@ StoreList.prototype.cookieSum = function () {
 };
 // Renders on page
 StoreList.prototype.render = function () {
-  var pEl = document.getElementById(this.name);
-  for (var i = 0; i < storeHours.length; i++) {
+  var table = document.getElementById('table');
+  var trEl = document.createElement('tr');
+  table.appendChild(trEl);
+
+  tdEl = document.createElement('td');
+  tdEl.textContent = `${this.name}`;
+  trEl.appendChild(tdEl);
+
+  for (var i = 0; i < this.storeCookiePerHour.length; i++) {
     // create element
-    var liEl = document.createElement('li');
+    var tdEl = document.createElement('td');
     // Give it content
-    liEl.textContent = `${storeHours[i]} ${this.storeCookiePerHour[i]} cookies`;
+    tdEl.textContent = `${this.storeCookiePerHour[i]}`;
     // append the child to the parent
-    pEl.appendChild(liEl);
+    trEl.appendChild(tdEl);
   }
-  liEl = document.createElement('li');
-  liEl.textContent = `Total: ${this.cookieTotal} cookies`;
-  pEl.appendChild(liEl);
+  var storeTotal = document.createElement('td');
+  storeTotal.textContent = `${this.cookieTotal}`;
+  trEl.appendChild(storeTotal);
 };
 
 new StoreList(23, 65, 6.3, 'Seattle Store');
@@ -61,30 +68,72 @@ new StoreList(11, 38, 3.7, 'Dubai Store');
 new StoreList(20, 38, 2.3, 'Paris Store');
 new StoreList(2, 16, 4.6, 'Lima Store');
 
-for (var i = 0; i < newStoreArr.length; i++) {
-  newStoreArr[i].cookiePerHour();
-  newStoreArr[i].cookieSum();
-  // newStoreArr[i].render();
-}
-
-
 function renderHeadingRow(storeArr) {
   var table = document.getElementById('table');
   var trEl = document.createElement('tr');
   table.appendChild(trEl);
 
+  var thEl = document.createElement('th');
+  trEl.appendChild(thEl);
+
   for (i = 0; i < storeArr.length; i++) {
-    var thEl = document.createElement('th');
+    thEl = document.createElement('th');
     thEl.textContent = storeArr[i];
     trEl.appendChild(thEl);
   }
   var dailyLocationTotal = document.createElement('th');
   dailyLocationTotal.textContent = 'Daily Location Total';
   trEl.appendChild(dailyLocationTotal);
+
 }
 renderHeadingRow(storeHours);
 
+for (var i = 0; i < newStoreArr.length; i++) {
+  newStoreArr[i].cookiePerHour();
+  newStoreArr[i].cookieSum();
+  newStoreArr[i].render();
+}
 
-// create table heading <th> and append it to table
-// then i need to give those table headings content using textcontent
+function getTotalPerHour(storeArr){
+  var hourlyTotalArray = [];
+  for(var i = 0; i < storeArr[0].storeCookiePerHour.length; i++){
+    var total = 0;
+    for(var j = 0; j < storeArr.length; j++){
+      total += storeArr[j].storeCookiePerHour[i];
+    }
+    hourlyTotalArray.push(total);
+  }
+  return hourlyTotalArray;
+}
+var arrayHourlyTotal = getTotalPerHour(newStoreArr);
 
+function getAllStoreTotals(array){
+  var total = 0;
+  for(i = 0; i < array.length; i++){
+    total += array[i].cookieTotal;
+  }
+  return total;
+}
+var omegaTotal = getAllStoreTotals(newStoreArr);
+
+function renderFooterRow(hourlyArray) {
+  var table = document.getElementById('table');
+  var trEl = document.createElement('tr');
+  table.appendChild(trEl);
+
+  tdEl = document.createElement('td');
+  tdEl.textContent = 'Total';
+  table.appendChild(tdEl);
+
+  for(i = 0; i < hourlyArray.length; i++){
+    var tdEl = document.createElement('td');
+    tdEl.textContent = `${hourlyArray[i]}`;
+    table.appendChild(tdEl);
+  }
+  tdEl = document.createElement('td');
+  tdEl.textContent = `${omegaTotal}`;
+  table.appendChild(tdEl);
+
+}
+
+renderFooterRow(arrayHourlyTotal);
