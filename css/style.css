@@ -1,12 +1,27 @@
 table {
   border: solid;
+  border-width: medium;
+  border-collapse: collapse;
+  border-color: black;
 }
 th, td {
   padding: 10px;
   border: solid;
-}
-
-th {
+  border-width: medium;
   text-align: center;
+  border-color: black;
+  text-transform: uppercase;
+}
+tr:nth-child(even) {
+  background: lightblue;
 
 }
+tfoot {
+  
+}
+
+h1 {
+  text-align: center;
+  font-size: x-large;
+}
+
