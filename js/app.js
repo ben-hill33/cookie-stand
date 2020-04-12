@@ -9,7 +9,7 @@
 // -User needs to be able to easily modify the input numbers for each location based on day of the week, special events, and other factors. 
 // -User would like to see nice formatting for the numbers
 
-var storeHours = ['6am:', '7am:', '8am:', '9am:', '10am:', '11am:', '12pm:', '1pm:', '2pm:', '3pm:', '4pm:', '5pm:', '6pm:', '7pm:'];
+var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 var newStoreArr = [];
 
 function StoreList(minCustHours, maxCustHours, avgCookies, name) {
@@ -23,19 +23,23 @@ function StoreList(minCustHours, maxCustHours, avgCookies, name) {
   newStoreArr.push(this);
 }
 
+//Generates random number
 StoreList.prototype.randomNumberCustomerHour = function () {
-  return (Math.floor(Math.random() * (this.maxCustHours - this.minCustHours + 1)) + this.minCustHours);//returns a random number between 23 and 65
+  return (Math.floor(Math.random() * (this.maxCustHours - this.minCustHours + 1)) + this.minCustHours);
 };
+
 StoreList.prototype.cookiePerHour = function () {
   for (var i = 0; i < storeHours.length; i++) {
     this.storeCookiePerHour.push(Math.round(this.randomNumberCustomerHour() * this.avgCookies));
   }
 };
+//Gives total for each store
 StoreList.prototype.cookieSum = function () {
   for (var i = 0; i < storeHours.length; i++) {
     this.cookieTotal = this.cookieTotal + this.storeCookiePerHour[i];
   }
 };
+// Renders on page
 StoreList.prototype.render = function () {
   var pEl = document.getElementById(this.name);
   for (var i = 0; i < storeHours.length; i++) {
@@ -60,87 +64,27 @@ new StoreList(2, 16, 4.6, 'Lima Store');
 for (var i = 0; i < newStoreArr.length; i++) {
   newStoreArr[i].cookiePerHour();
   newStoreArr[i].cookieSum();
-  newStoreArr[i].render();
+  // newStoreArr[i].render();
 }
 
 
-// seaRender();
+function renderHeadingRow(storeArr) {
+  var table = document.getElementById('table');
+  var trEl = document.createElement('tr');
+  table.appendChild(trEl);
 
-//Tokyo Store
-
-// function tokyoRender() {
-//   var tokSum = tokyo.cookieSum();
-
-//   var tokyparEl = document.getElementById('Tokyo Store');
-//   for (var i = 0; i < storeHours.length; i++) {
-//     // create element
-//     var tokliEl = document.createElement('li');
-//     // Give it content
-//     tokliEl.textContent = `${storeHours[i]} ${tokyo.storeCookiePerHour[i]} cookies`;
-//     // append the child to the parent
-//     tokyparEl.appendChild(tokliEl);
-//   }
-//   var tokLiEl = document.createElement('li');
-//   tokLiEl.textContent = `Total: ${tokSum} cookies`;
-//   tokyparEl.appendChild(tokLiEl);
-// }
-// // tokyoRender();
+  for (i = 0; i < storeArr.length; i++) {
+    var thEl = document.createElement('th');
+    thEl.textContent = storeArr[i];
+    trEl.appendChild(thEl);
+  }
+  var dailyLocationTotal = document.createElement('th');
+  dailyLocationTotal.textContent = 'Daily Location Total';
+  trEl.appendChild(dailyLocationTotal);
+}
+renderHeadingRow(storeHours);
 
 
-// function dubaiRender() {
-//   var dubSum = dubai.cookieSum();
-
-//   var dubaiparEl = document.getElementById('Dubai Store');
-//   for (var i = 0; i < storeHours.length; i++) {
-//     // create element
-//     var dubliEl = document.createElement('li');
-//     // Give it content
-//     dubliEl.textContent = `${storeHours[i]} ${dubai.storeCookiePerHour[i]} cookies`;
-//     // append the child to the parent
-//     dubaiparEl.appendChild(dubliEl);
-//   }
-//   var dubLiEl = document.createElement('li');
-//   dubLiEl.textContent = `Total: ${dubSum} cookies`;
-//   dubaiparEl.appendChild(dubLiEl);
-// }
-// // dubaiRender();
-
-
-// function parisRender() {
-//   var parSum = paris.cookieSum();
-
-//   var parisparEl = document.getElementById('Paris Store');
-//   for (var i = 0; i < storeHours.length; i++) {
-//     // create element
-//     var parliEl = document.createElement('li');
-//     // Give it content
-//     parliEl.textContent = `${storeHours[i]} ${paris.storeCookiePerHour[i]} cookies`;
-//     // append the child to the parent
-//     parisparEl.appendChild(parliEl);
-//   }
-//   var parLiEl = document.createElement('li');
-//   parLiEl.textContent = `Total: ${parSum} cookies`;
-//   parisparEl.appendChild(parLiEl);
-// }
-// // parisRender();
-
-
-
-// function limaRender() {
-//   var limSum = lima.cookieSum();
-
-//   var limaparEl = document.getElementById('Lima Store');
-//   for (var i = 0; i < storeHours.length; i++) {
-//     // create element
-//     var limliEl = document.createElement('li');
-//     // Give it content
-//     limliEl.textContent = `${storeHours[i]} ${lima.storeCookiePerHour[i]} cookies`;
-//     // append the child to the parent
-//     limaparEl.appendChild(limliEl);
-//   }
-//   var limLiEl = document.createElement('li');
-//   limLiEl.textContent = `Total: ${limSum} cookies`;
-//   limaparEl.appendChild(limLiEl);
-// }
-// // limaRender();
+// create table heading <th> and append it to table
+// then i need to give those table headings content using textcontent
 
