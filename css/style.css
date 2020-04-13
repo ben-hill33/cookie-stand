@@ -16,8 +16,9 @@ tr:nth-child(even) {
   background: lightblue;
 
 }
-tfoot {
   
+p {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {

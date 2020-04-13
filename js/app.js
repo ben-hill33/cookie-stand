@@ -1,13 +1,5 @@
 'use strict';
-//Problem Domain:
-// -Need to calculate the number of cookies each location must make eery day to manage its supplies inventory and baking schedule.
-// -Number of cookies made depends on hours of operations which is 6-8 for all locations, plust a few factors unique to each location such as:
-// Minimum number of customers per hour
-// Maximum number of customers per hour
-// Average number of cookies sold per customer
-// -Needs to be adaptable
-// -User needs to be able to easily modify the input numbers for each location based on day of the week, special events, and other factors. 
-// -User would like to see nice formatting for the numbers
+
 
 var storeHours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var newStoreArr = [];
