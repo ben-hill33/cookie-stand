@@ -1,7 +1,7 @@
 'use strict';
 
-
 var storeHours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
+
 var newStoreArr = [];
 
 // Object Constructor
@@ -87,7 +87,7 @@ for (var i = 0; i < newStoreArr.length; i++) {
   newStoreArr[i].cookieSum();
   newStoreArr[i].render();
 }
-
+// Gets total per hour for each store that displays in footer row
 function getTotalPerHour(storeArr){
   var hourlyTotalArray = [];
   for(var i = 0; i < storeArr[0].storeCookiePerHour.length; i++){
@@ -101,6 +101,7 @@ function getTotalPerHour(storeArr){
 }
 var arrayHourlyTotal = getTotalPerHour(newStoreArr);
 
+// Gets the sum of the totals gathered in footer to display grand total
 function getAllStoreTotals(array){
   var total = 0;
   for(i = 0; i < array.length; i++){
@@ -129,5 +130,5 @@ function renderFooterRow(hourlyArray) {
   table.appendChild(tdEl);
 
 }
-
 renderFooterRow(arrayHourlyTotal);
+
