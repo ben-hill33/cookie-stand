@@ -2,13 +2,25 @@
   outline: dotted red;
 } */
 
-h1 {
+#homeh1 {
   background-color: lightgreen;
   font-size: 25px;
   margin-bottom: 20px;
   padding: 10px;
   text-align: center;
 
+}
+
+#salesh1 {
+  font-size: 25px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+#homelink {
+  text-align: center;
+  font-size: 25px;
 }
 
 nav {
@@ -62,6 +74,7 @@ table {
   border-width: medium;
   border-collapse: collapse;
   border-color: black;
+  margin: 10px;
 }
 th, td {
   padding: 10px;
