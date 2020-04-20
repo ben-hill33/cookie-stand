@@ -21,13 +21,22 @@
     <table id="table">
       <!-- Created table elements in app.js -->
     </table>
-    <form>
+    <form id="userForm">
       <fieldset>
         <legend>Add Store to Table</legend>
 
         <label>Enter New Store Name</label>
-        <input type="text" placeholder="Lima Store">
+        <input id="storeName" type="text" placeholder="Lima Store">
 
+        <label>Minimum Customers Per Hour</label>
+        <input id="minimumCustNum" type="number" placeholder="23">
+
+        <label>Maximum Customers Per Hour</label>
+        <input id="maximumCustNum" type="number" placeholder="65">
+
+        <label>Average Purchase of Cookies Per Customer</label>
+        <input id="averagePurchCust" type="number" placeholder="6.3">
+        
         <button value="submit">Submit</button>
       </fieldset>
     </form>
