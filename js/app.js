@@ -158,7 +158,6 @@ function handleSubmit(event){
 
   var lastChild = table.lastChild;
   table.removeChild(lastChild);
-  console.log(lastChild + ' This is last child');
 
 
   new StoreList(minimum, maximum, average, store);
