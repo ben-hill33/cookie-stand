@@ -74,7 +74,6 @@ new StoreList(11, 38, 3.7, 'Dubai Store');
 new StoreList(20, 38, 2.3, 'Paris Store');
 new StoreList(2, 16, 4.6, 'Lima Store');
 
-console.log(newStoreArr[0]);
 
 function renderHeadingRow() {
   var trEl = document.createElement('tr');
@@ -109,6 +108,7 @@ function getTotalPerHour(storeArr){
   return hourlyTotalArray;
 }
 var arrayHourlyTotal = getTotalPerHour(newStoreArr);
+
 // Gets the sum of the totals gathered in footer to display grand total
 function getAllStoreTotals(array){
   var total = 0;
@@ -156,12 +156,14 @@ function handleSubmit(event){
   var average = parseInt(event.target.averagePurchCust.value);
   console.log(average);
 
+
   var lastChild = table.lastChild;
   table.removeChild(lastChild);
-  console.log(lastChild + ' This is last child');
-
 
   new StoreList(minimum, maximum, average, store);
+
+  arrayHourlyTotal = getTotalPerHour(newStoreArr);
+  omegaTotal = getAllStoreTotals(newStoreArr);
   renderFooterRow(arrayHourlyTotal);
 
   event.target.storeName.value = null;
